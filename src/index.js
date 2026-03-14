@@ -8,7 +8,7 @@ import seedDatabase from './data/seed.js';
 const app = express();
 const PORT =  process.env.PORT || 3000;
 app.use(express.json());
-app.use('/alumnos', alumnoRoutes);
+app.use('/alumno', alumnoRoutes);
 app.use('/disciplina', disciplinaRoutes)
 app.use(handleError)
 
@@ -23,7 +23,7 @@ const testConnection = async () => {
         console.error('❌ No se pudo conectar a la base de datos:', error);
     }
 }
-await seedDatabase();
+// await seedDatabase();
 
 testConnection();
 

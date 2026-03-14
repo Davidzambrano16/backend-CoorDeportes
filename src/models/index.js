@@ -1,8 +1,10 @@
-import Alumno from "./alumno.js";
-import Disciplina from "./disciplina.js";
+// src/models/index.js
+import Alumno from "./Alumno.js";
+import Disciplina from "./Disciplina.js";
+import Inscripcion from "./Inscripcion.js"; // Importamos el modelo real
 
-Alumno.belongsToMany(Disciplina,{ through: 'Inscripciones' })
-Disciplina.belongsToMany(Alumno, { through: 'Inscripciones' })
+// Usa el OBJETO del modelo en el through, no un string
+Alumno.belongsToMany(Disciplina, { through: Inscripcion });
+Disciplina.belongsToMany(Alumno, { through: Inscripcion });
 
-export { default as Alumno } from './alumno.js';
-export { default as Disciplina} from './disciplina.js';
+export { Alumno, Disciplina, Inscripcion };

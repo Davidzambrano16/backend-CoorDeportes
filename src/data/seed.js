@@ -1,5 +1,5 @@
-import Alumno from "../models/alumno.js";
-import Disciplina from "../models/disciplina.js";
+import Alumno from "../models/Alumno.js";
+import Disciplina from "../models/Disciplina.js";
 
 const seedDatabase = async () => {
     try {
