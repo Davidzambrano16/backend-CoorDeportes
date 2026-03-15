@@ -1,2 +1,2 @@
-export * from './alumnoController.js';
+export * from './usuarioControllers.js';
 export * from './disciplinaController.js'

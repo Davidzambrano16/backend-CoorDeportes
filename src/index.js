@@ -1,14 +1,14 @@
 import express from 'express'
 import db from './database/db.js'
 import handleError from './middlewares/error.middleware.js'
-import {alumnoRoutes, disciplinaRoutes} from './routes/index.js'
+import {usuarioRoutes, disciplinaRoutes} from './routes/index.js'
 import seedDatabase from './data/seed.js';
 
 
 const app = express();
 const PORT =  process.env.PORT || 3000;
 app.use(express.json());
-app.use('/alumno', alumnoRoutes);
+app.use('/usuario', usuarioRoutes);
 app.use('/disciplina', disciplinaRoutes)
 app.use(handleError)
 

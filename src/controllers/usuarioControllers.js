@@ -1,39 +1,40 @@
-import { Alumno, Disciplina, Inscripcion } from "../models/index.js"
+import { enviarEmail } from "../config/mailer.js";
+import { Usuario, Disciplina, InscripcionDisciplina } from "../models/index.js"
 
-export const buscarAlumno = async (req, res, next) => {
+export const buscarUsuario = async (req, res, next) => {
     try {
         const { cedula } = req.params;
-        const alumno = await Alumno.findByPk(cedula);
-        res.status(200).json(alumno)
+        const usuario = await Usuario.findByPk(cedula);
+        res.status(200).json(usuario)
     } catch (error) {
         next(error)
     }
 }
 
-export const inscribirAlumno = async (req, res, next) => {
+export const inscribirUsuario = async (req, res, next) => {
     try {
         const { cedula, disciplinaId } = req.body
-        const [alumno, disciplina] = await Promise.all([
-            Alumno.findByPk(cedula),
+        const [usuario, disciplina] = await Promise.all([
+            Usuario.findByPk(cedula),
             Disciplina.findByPk(disciplinaId)
         ]);
 
-        if (!alumno) return next({
+        if (!usuario) return next({
             status: 404,
-            message: 'Alumno no encontrado'
+            message: 'usuario no encontrado'
         });
         if (!disciplina) return next({
             status: 404,
             message: 'Deporte no encontrado'
         });
-        if(alumno.estado == 'inactivo') return next({
+        if(usuario.estado == 'inactivo') return next({
             status: 400,
-            message: `el alumno ${alumno.nombres} se encuentra inactivo`
+            message: `el usuario ${usuario.nombres} se encuentra inactivo`
         })
 
-        const yaInscrito = await Inscripcion.findOne({
+        const yaInscrito = await InscripcionDisciplina.findOne({
             where: {
-                AlumnoCedula: cedula,
+                UsuarioCedula: cedula,
                 DisciplinaId: disciplinaId
             }
         })
@@ -45,11 +46,13 @@ export const inscribirAlumno = async (req, res, next) => {
             })
         }
 
-        alumno.addDisciplina(disciplina)
+        usuario.addDisciplina(disciplina)
+        // await enviarEmail(usuario, disciplina);
+        
         res.status(200).json({
             message: `Inscripción exitosa en ${disciplina.nombre}`,
-            alumno: alumno.nombres,
-            cedula: alumno.cedula
+            usuario: usuario.nombres,
+            cedula: usuario.cedula
         })
 
     } catch (error) {
@@ -60,22 +63,22 @@ export const inscribirAlumno = async (req, res, next) => {
 export const disciplinasInscritas = async(req, res, next) => {
     try {
         const {cedula} = req.params
-        const alumno = await Alumno.findByPk(cedula, {
+        const usuario = await Usuario.findByPk(cedula, {
             include: {
                 model: Disciplina,
                 through: {attributes: []}
             }
         })
-        if(!alumno){
+        if(!usuario){
             return next({
                 status: 400,
                 message: 'no tienes ninguna disciplina inscrita'
             })
         }
         res.status(200).json({
-            alumno: `${alumno.nombres} ${alumno.apellidos}`,
-            carrera: alumno.carrera,
-            inscripciones: alumno.Disciplinas 
+            usuario: `${usuario.nombres} ${usuario.apellidos}`,
+            carrera: usuario.carrera,
+            inscripciones: usuario.Disciplinas 
         });
     } catch (error) {
         next(error)
@@ -86,15 +89,15 @@ export const eliminarInscripcion = async (req, res, next) =>{
     try {
         const { cedula, disciplinaId } = req.body;
 
-        const alumno = await Alumno.findByPk(cedula);
+        const usuario = await Usuario.findByPk(cedula);
         const disciplina = await Disciplina.findByPk(disciplinaId);
 
-        if (!alumno || !disciplina) return next({
+        if (!usuario || !disciplina) return next({
                 status: 404,
                 message: 'Datos no encontrados'
             })
             
-        await alumno.removeDisciplina(disciplina)
+        await usuario.removeDisciplina(disciplina)
         res.status(200).json({
             message: `Inscripción en ${disciplina.nombre} cancelada.`
         })

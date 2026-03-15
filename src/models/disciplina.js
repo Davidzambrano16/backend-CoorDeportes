@@ -12,6 +12,10 @@ const Disciplina = db.define('Disciplina',{
         allowNull: false,
         unique: true
     },
+    entrenador:{
+        type: DataTypes.STRING,
+        allowNull: true,
+    },
     descripcion: {
         type: DataTypes.TEXT
     }
