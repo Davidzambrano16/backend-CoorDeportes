@@ -9,16 +9,21 @@ const Torneo = db.define('Torneo', {
     },
     nombre: {
         type: DataTypes.STRING,
-        allowDefault: false
+        allowNull: false
     },
     encargado:{
         type: DataTypes.STRING,
         allowNull: false,
     },
     fechaInicio: {
-        type: DataTypes.DATEONLY
+        type: DataTypes.DATEONLY,
+        allowNull: false,
     },
     equipos:{
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    maxJugadores: {
         type: DataTypes.INTEGER,
         allowNull: false
     },

@@ -1,35 +1,43 @@
-// src/models/index.js
-import Usuario from "./Usuario.js";
-import Disciplina from "./Disciplina.js";
-import Torneo from "./Torneo.js";
-import InscripcionTorneo from "./InscripcionTorneo.js";
-import Equipo from "./Equipo.js";
-import Partido from "./Partido.js";
-import InscripcionDisciplina from "./InscripcionDisciplina.js";
+import Usuario from './Usuario.js';
+import Equipo from './Equipo.js';
+import Disciplina from './Disciplina.js';
+import InscripcionDisciplina from './InscripcionDisciplina.js';
+import Torneo from './Torneo.js';
+import InscripcionTorneo from './InscripcionTorneo.js'
+import Partido from './Partido.js';
 
-// --- Relaciones existentes ---
-Usuario.belongsToMany(Disciplina, { through: InscripcionDisciplina });
-Disciplina.belongsToMany(Usuario, { through: InscripcionDisciplina });
+// 1. Un Usuario puede inscribirse a muchas Disciplinas (y viceversa)
+Usuario.belongsToMany(Disciplina, { through: 'InscripcionDisciplina' });
+Disciplina.belongsToMany(Usuario, { through: 'InscripcionDisciplina' });
 
-Disciplina.hasMany(Torneo, { foreignKey: 'disciplinaId' });
+// 2. Un Usuario puede inscribirse a muchos Equipos (y viceversa)
+Usuario.belongsToMany(Equipo, { through: 'UsuarioEquipo' });
+Equipo.belongsToMany(Usuario, { through: 'UsuarioEquipo' });
+
+// 3. Un Equipo puede inscribirse a muchos Torneos (y viceversa)
+Equipo.belongsToMany(Torneo, { through: 'InscripcionTorneo' });
+Torneo.belongsToMany(Equipo, { through: 'InscripcionTorneo' });
+
+// 4. Un Torneo pertenece a una Disciplina
 Torneo.belongsTo(Disciplina, { foreignKey: 'disciplinaId' });
+Disciplina.hasMany(Torneo, { foreignKey: 'disciplinaId' });
 
-Usuario.belongsToMany(Torneo, { through: InscripcionTorneo });
-Torneo.belongsToMany(Usuario, { through: InscripcionTorneo });
-
-// --- Relaciones de Equipos y Partidos ---
-Torneo.hasMany(Equipo, { foreignKey: 'torneoId' });
-Equipo.belongsTo(Torneo, { foreignKey: 'torneoId' });
-
-// Relación Muchos a Muchos: Un equipo tiene varios usuarios (jugadores)
-Equipo.belongsToMany(Usuario, { through: 'MiembrosEquipo' });
-Usuario.belongsToMany(Equipo, { through: 'MiembrosEquipo' });
-
-Torneo.hasMany(Partido, { foreignKey: 'torneoId' });
+// 5. Un Partido pertenece a un Torneo
 Partido.belongsTo(Torneo, { foreignKey: 'torneoId' });
+Torneo.hasMany(Partido, { foreignKey: 'torneoId' });
 
-// Relaciones para el encuentro
+/** * EXTRA: Relación de equipos en el partido
+ * Para que un partido tenga sentido, necesitamos saber qué equipos juegan.
+ */
 Partido.belongsTo(Equipo, { as: 'Local', foreignKey: 'localId' });
 Partido.belongsTo(Equipo, { as: 'Visitante', foreignKey: 'visitanteId' });
 
-export { Usuario, Disciplina, InscripcionDisciplina, Torneo, InscripcionTorneo, Equipo, Partido };
+export {
+    Usuario,
+    Equipo,
+    Disciplina,
+    InscripcionDisciplina,
+    Torneo,
+    InscripcionTorneo,
+    Partido
+};

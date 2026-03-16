@@ -1,18 +1,22 @@
-import Alumno from "../models/Usuario.js";
-import Disciplina from "../models/Disciplina.js";
+import Alumno from '../models/Usuario.js';
+import Disciplina from '../models/Disciplina.js';
+import bcrypt from 'bcrypt';
 
 const seedDatabase = async () => {
-    try {
-        // Esto borra la tabla y la vuelve a crear limpia
-        await Alumno.sync({ force: true });
-        await Disciplina.sync({force: true})
+  try {
+    // Esto borra la tabla y la vuelve a crear limpia
+    await Alumno.sync({ force: true });
+    await Disciplina.sync({ force: true });
 
-        await Alumno.bulkCreate([
-            { cedula: 'V-20123456', nombres: 'Andrés', apellidos: 'Rodríguez', carrera: 'Ing. Informática', estado: 'activo' },
-            { cedula: 'V-25987654', nombres: 'María', apellidos: 'Gómez', carrera: 'Ing. Industrial', estado: 'activo' },
-            { cedula: 'V-18456123', nombres: 'Pedro', apellidos: 'Pérez', carrera: 'Ing. Civil', estado: 'inactivo' },
-            { cedula: 'V-29734989', nombres: 'David', apellidos: 'Zambrano', correo: 'david.zambrano@unet.edu.ve', carrera: 'Ing. Informatica', estado: 'activo'}
-        ]);
+    const passwordAdmin = await bcrypt.hash('admin123', 10);
+    const passwordUser = await bcrypt.hash('user123', 10);
+
+    await Alumno.bulkCreate([
+      { cedula: 'V-20123456', nombres: 'Andrés', apellidos: 'Rodríguez', correo: 'andres@unet.edu.ve', carrera: 'Ing. Informática', estado: 'activo', rol: 'estudiante' },
+      { cedula: 'V-25987654', nombres: 'María', apellidos: 'Gómez', correo: 'maria@unet.edu.ve', carrera: 'Ing. Industrial', estado: 'activo', rol: 'estudiante' },
+      { cedula: 'V-18456123', nombres: 'Pedro', apellidos: 'Pérez', correo: 'pedro@unet.edu.ve', carrera: 'Ing. Civil', estado: 'inactivo', rol: 'estudiante' },
+      { cedula: 'V-29734989', nombres: 'David', apellidos: 'Zambrano', correo: 'david.zambrano@unet.edu.ve', carrera: 'Ing. Informatica', estado: 'activo', rol: 'admin' }
+    ]);
 
         await Disciplina.bulkCreate([
             {nombre: 'Futbol', entrenador: 'prof. omar'},

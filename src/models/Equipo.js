@@ -16,7 +16,8 @@ const Equipo = db.define('Equipo', {
         allowNull: false
     },
     capitanCedula: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        allowNull: false
     }
 }, { timestamps: false });
 

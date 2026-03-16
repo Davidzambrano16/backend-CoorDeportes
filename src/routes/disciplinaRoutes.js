@@ -1,8 +1,10 @@
 import { Router } from "express";
-import { obtenerDisciplinas } from "../controllers/index.js";
+import { crearDisciplina, eliminarDisciplina, obtenerDisciplinas } from "../controllers/index.js";
 
 const router = Router()
 
 router.get('/', obtenerDisciplinas)
+router.post('/', crearDisciplina)
+router.delete('/', eliminarDisciplina)
 
-export default router
+export default router  

@@ -18,14 +18,15 @@ const Usuario = db.define('Usuario', {
     },
     correo:{
         type: DataTypes.STRING,
-        // allowNull: false,
+        allowNull: false,
         unique: true,
         validate: {
             isEmail: true
         }
     },
     rol:{
-        type: DataTypes.ENUM('estudiante', 'admin')
+        type: DataTypes.ENUM('estudiante', 'admin'),
+        defaultValue: 'estudiante'
     },
     carrera: {
         type: DataTypes.STRING,
