@@ -1,4 +1,5 @@
 import express from 'express'
+import cors from 'cors';
 import db from './database/db.js'
 import handleError from './middlewares/error.middleware.js'
 import {usuarioRoutes, disciplinaRoutes, torneoRoutes, equipoRoutes, partidoRoutes} from './routes/index.js'
@@ -7,6 +8,7 @@ import seedDatabase from './data/seed.js';
 
 const app = express();
 const PORT =  process.env.PORT || 3000;
+app.use(cors())
 app.use(express.json());
 app.use('/usuario', usuarioRoutes);
 app.use('/disciplina', disciplinaRoutes)
@@ -26,7 +28,7 @@ const testConnection = async () => {
         console.error('❌ No se pudo conectar a la base de datos:', error);
     }
 }
-await seedDatabase();
+// await seedDatabase();
 
 testConnection();
 

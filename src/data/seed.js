@@ -1,5 +1,5 @@
 import Alumno from '../models/Usuario.js';
-import Disciplina from '../models/Disciplina.js';
+import Disciplina from '../models/index.js';
 import bcrypt from 'bcrypt';
 
 const seedDatabase = async () => {
