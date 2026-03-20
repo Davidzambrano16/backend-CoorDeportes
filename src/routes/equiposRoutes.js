@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { crearEquipo, obtenerEquipos, obtenerEquipo, actualizarEquipo, eliminarEquipo, agregarUsuarioAEquipo } from '../controllers/index.js';
+import { crearEquipo, obtenerEquipos, obtenerEquipo, actualizarEquipo, eliminarEquipo } from '../controllers/index.js';
 import { autenticarToken, esAdmin } from '../middlewares/auth.middleware.js';
 
 const router = Router();

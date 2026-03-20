@@ -1,17 +1,16 @@
-import Alumno from '../models/Usuario.js';
-import Disciplina from '../models/index.js';
+import {Usuario, Disciplina } from '../models/index.js'
 import bcrypt from 'bcrypt';
 
 const seedDatabase = async () => {
   try {
     // Esto borra la tabla y la vuelve a crear limpia
-    await Alumno.sync({ force: true });
+    await Usuario.sync({ force: true });
     await Disciplina.sync({ force: true });
 
     const passwordAdmin = await bcrypt.hash('admin123', 10);
     const passwordUser = await bcrypt.hash('user123', 10);
 
-    await Alumno.bulkCreate([
+    await Usuario.bulkCreate([
       { cedula: 'V-20123456', nombres: 'Andrés', apellidos: 'Rodríguez', correo: 'andres@unet.edu.ve', carrera: 'Ing. Informática', estado: 'activo', rol: 'estudiante' },
       { cedula: 'V-25987654', nombres: 'María', apellidos: 'Gómez', correo: 'maria@unet.edu.ve', carrera: 'Ing. Industrial', estado: 'activo', rol: 'estudiante' },
       { cedula: 'V-18456123', nombres: 'Pedro', apellidos: 'Pérez', correo: 'pedro@unet.edu.ve', carrera: 'Ing. Civil', estado: 'inactivo', rol: 'estudiante' },
