@@ -28,7 +28,7 @@ const testConnection = async () => {
         console.error('❌ No se pudo conectar a la base de datos:', error);
     }
 }
-// await seedDatabase();
+await seedDatabase();
 
 testConnection();
 
