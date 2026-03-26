@@ -34,7 +34,7 @@ export const loginUsuario = async (req, res, next) => {
             { expiresIn: '2h' }
         );
 
-        res.status(200).json({ message: 'Inicio de sesión exitoso', token });
+        res.status(200).json({ message: 'Inicio de sesión exitoso', token, usuario });
     } catch (error) {
         next(error);
     }
