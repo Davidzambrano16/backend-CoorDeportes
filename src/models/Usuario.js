@@ -24,6 +24,10 @@ const Usuario = db.define('Usuario', {
             isEmail: true
         }
     },
+    password: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
     rol:{
         type: DataTypes.ENUM('estudiante', 'admin'),
         defaultValue: 'estudiante'

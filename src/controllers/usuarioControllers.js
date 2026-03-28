@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt'; // Asegúrate de tener instalado bcrypt o bcryptjs
 import { enviarEmail } from '../config/mailer.js';
 import { Usuario, Disciplina, InscripcionDisciplina } from '../models/index.js';
 
@@ -17,14 +18,22 @@ export const buscarUsuario = async (req, res, next) => {
 
 export const loginUsuario = async (req, res, next) => {
     try {
-        const { cedula } = req.body;
+        const { correo, password } = req.body;
 
-        if (!cedula) {
-            return res.status(400).json({ message: 'Cedula es requerida' });
+        if (!correo) {
+            return res.status(400).json({ message: 'El correo es requerido' });
+        }
+        if (!paasword) {
+            return res.status(400).json({ message: 'El correo es requerido' });
         }
 
-        const usuario = await Usuario.findOne({ where: { cedula } });
+        const usuario = await Usuario.findOne({ where: { correo } });
         if (!usuario) {
+            return res.status(401).json({ message: 'Credenciales inválidas' });
+        }
+        const esValida = await bcrypt.compare(password, usuario.password);
+
+        if (!esValida) {
             return res.status(401).json({ message: 'Credenciales inválidas' });
         }
 
@@ -34,7 +43,9 @@ export const loginUsuario = async (req, res, next) => {
             { expiresIn: '2h' }
         );
 
-        res.status(200).json({ message: 'Inicio de sesión exitoso', token, usuario });
+        const { password: _, ...datosUsuario } = usuario.toJSON ? usuario.toJSON() : usuario;
+
+        res.status(200).json({ message: 'Inicio de sesión exitoso', token, datosUsuario });
     } catch (error) {
         next(error);
     }

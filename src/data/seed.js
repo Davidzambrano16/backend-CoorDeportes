@@ -11,10 +11,10 @@ const seedDatabase = async () => {
     const passwordUser = await bcrypt.hash('user123', 10);
 
     await Usuario.bulkCreate([
-      { cedula: 'V-20123456', nombres: 'Andrés', apellidos: 'Rodríguez', correo: 'andres@unet.edu.ve', carrera: 'Ing. Informática', estado: 'activo', rol: 'estudiante' },
-      { cedula: 'V-25987654', nombres: 'María', apellidos: 'Gómez', correo: 'maria@unet.edu.ve', carrera: 'Ing. Industrial', estado: 'activo', rol: 'estudiante' },
-      { cedula: 'V-18456123', nombres: 'Pedro', apellidos: 'Pérez', correo: 'pedro@unet.edu.ve', carrera: 'Ing. Civil', estado: 'inactivo', rol: 'estudiante' },
-      { cedula: 'V-29734989', nombres: 'David', apellidos: 'Zambrano', correo: 'david.zambrano@unet.edu.ve', carrera: 'Ing. Informatica', estado: 'activo', rol: 'admin' }
+      { cedula: 'V-20123456', nombres: 'Andrés', apellidos: 'Rodríguez', correo: 'andres@unet.edu.ve', password: '123456', carrera: 'Ing. Informática', estado: 'activo', rol: 'estudiante' },
+      { cedula: 'V-25987654', nombres: 'María', apellidos: 'Gómez', correo: 'maria@unet.edu.ve', password: '09876', carrera: 'Ing. Industrial', estado: 'activo', rol: 'estudiante' },
+      { cedula: 'V-18456123', nombres: 'Pedro', apellidos: 'Pérez', correo: 'pedro@unet.edu.ve', password: '09876', carrera: 'Ing. Civil', estado: 'inactivo', rol: 'estudiante' },
+      { cedula: 'V-29734989', nombres: 'David', apellidos: 'Zambrano', correo: 'david.zambrano@unet.edu.ve', password: '12345', carrera: 'Ing. Informatica', estado: 'activo', rol: 'admin' }
     ]);
 
         await Disciplina.bulkCreate([
