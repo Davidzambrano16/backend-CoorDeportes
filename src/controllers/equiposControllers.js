@@ -51,7 +51,7 @@ export const obtenerEquipos = async (req, res, next) => {
         const equipos = await Equipo.findAll({
             include: [{
                 model: Usuario,
-                attributes: ['cedula', 'nombres', 'apellidos']
+                attributes: ['cedula', 'nombres', 'apellidos', 'carrera']
             }]
         });
         res.status(200).json(equipos);
@@ -148,6 +148,10 @@ export const agregarUsuarioAEquipo = async (req, res, next) => {
 
         if (usuario.equipoId && usuario.equipoId !== equipoId) {
             return res.status(400).json({ message: 'El usuario ya pertenece a otro equipo' });
+        }
+
+        if(usuario.estado == 'inactivo'){
+            return res.status(400).json({message: 'El usuario se encuentra inactivo'})
         }
 
         usuario.equipoId = equipoId;
