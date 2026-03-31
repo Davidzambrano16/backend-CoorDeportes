@@ -1,5 +1,6 @@
 import { DataTypes } from "sequelize";
 import db from "../database/db.js";
+import bcrypt from "bcrypt";
 
 const Usuario = db.define('Usuario', {
     cedula: {
@@ -16,7 +17,7 @@ const Usuario = db.define('Usuario', {
         type: DataTypes.STRING,
         allowNull: false
     },
-    correo:{
+    correo: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
@@ -28,7 +29,7 @@ const Usuario = db.define('Usuario', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    rol:{
+    rol: {
         type: DataTypes.ENUM('estudiante', 'admin'),
         defaultValue: 'estudiante'
     },
@@ -40,8 +41,22 @@ const Usuario = db.define('Usuario', {
         type: DataTypes.ENUM('activo', 'inactivo'),
         defaultValue: 'activo'
     }
-},{
-    timestamps: true
-})
+}, {
+    timestamps: true,
+    hooks: {
+        beforeCreate: async (usuario) => {
+            if (usuario.password) {
+                const salt = await bcrypt.genSalt(10);
+                usuario.password = await bcrypt.hash(usuario.password, salt);
+            }
+        },
+        beforeUpdate: async (usuario) => {
+            if (usuario.changed('password')) {
+                const salt = await bcrypt.genSalt(10);
+                usuario.password = await bcrypt.hash(usuario.password, salt);
+            }
+        }
+    }
+});
 
 export default Usuario;

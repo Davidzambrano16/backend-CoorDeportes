@@ -23,18 +23,23 @@ export const loginUsuario = async (req, res, next) => {
         if (!correo) {
             return res.status(400).json({ message: 'El correo es requerido' });
         }
-        if (!paasword) {
-            return res.status(400).json({ message: 'El correo es requerido' });
+        if (!password) {
+            return res.status(400).json({ message: 'la contraseña es requerido' });
         }
 
         const usuario = await Usuario.findOne({ where: { correo } });
         if (!usuario) {
-            return res.status(401).json({ message: 'Credenciales inválidas' });
+            return res.status(401).json({ message: 'Credenciales inválidas 1' });
         }
-        const esValida = await bcrypt.compare(password, usuario.password);
+
+        console.log("Contraseña recibida:", password);
+        console.log("Hash en BD:", usuario.password);
+
+        const esValida = await bcrypt.compare(password.trim(), usuario.password);
+        console.log("¿Es válida?:", esValida);
 
         if (!esValida) {
-            return res.status(401).json({ message: 'Credenciales inválidas' });
+            return res.status(401).json({ message: 'Credenciales invalidas, contraseña incorrecta' });
         }
 
         const token = jwt.sign(
