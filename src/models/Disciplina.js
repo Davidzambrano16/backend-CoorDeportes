@@ -1,8 +1,8 @@
 import { DataTypes } from "sequelize";
 import db from "../database/db.js";
 
-const Disciplina = db.define('Disciplina',{
-    id:{
+const Disciplina = db.define('Disciplina', {
+    id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
@@ -12,12 +12,19 @@ const Disciplina = db.define('Disciplina',{
         allowNull: false,
         unique: true
     },
-    entrenador:{
+    entrenador: {
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: false,
+    },
+    lugarEntrenamiento:{
+        type: DataTypes.STRING,
+        allowNull: false
     },
     descripcion: {
         type: DataTypes.TEXT
+    },
+    imagen: {
+        type: DataTypes.STRING
     }
 })
 

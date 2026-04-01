@@ -40,6 +40,9 @@ const Usuario = db.define('Usuario', {
     estado: {
         type: DataTypes.ENUM('activo', 'inactivo'),
         defaultValue: 'activo'
+    },
+    imagen: {
+        type: DataTypes.STRING
     }
 }, {
     timestamps: true,

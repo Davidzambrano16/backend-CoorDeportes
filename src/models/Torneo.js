@@ -30,6 +30,12 @@ const Torneo = db.define('Torneo', {
     estado: {
         type: DataTypes.ENUM('proximamente', 'en curso', 'finalizado'),
         defaultValue: 'proximamente'
+    },
+    descripcion: {
+        type: DataTypes.STRING
+    },
+    imagen:{
+        type: DataTypes.STRING
     }
 }, { timestamps: false });
 

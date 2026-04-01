@@ -2,12 +2,12 @@ import { DataTypes } from 'sequelize';
 import db from '../database/db.js';
 
 const Equipo = db.define('Equipo', {
-    id: { 
+    id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-    nombre: { 
+    nombre: {
         type: DataTypes.STRING,
         allowNull: false
     },
@@ -18,6 +18,9 @@ const Equipo = db.define('Equipo', {
     capitanCedula: {
         type: DataTypes.STRING,
         allowNull: false
+    },
+    imagen: {
+        type: DataTypes.STRING
     }
 }, { timestamps: false });
 
