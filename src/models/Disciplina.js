@@ -24,7 +24,7 @@ const Disciplina = db.define('Disciplina', {
         type: DataTypes.TEXT
     },
     imagen: {
-        type: DataTypes.STRING
+        type: DataTypes.TEXT
     }
 })
 

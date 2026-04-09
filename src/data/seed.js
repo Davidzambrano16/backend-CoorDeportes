@@ -18,12 +18,14 @@ const seedDatabase = async () => {
     });
 
     await Disciplina.bulkCreate([
-      { nombre: 'Futbol5', entrenador: 'prof. omar', lugar: 'Cancha de uso multiple', imagen: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=1000' },
-      { nombre: 'ajedrez', entrenador: 'prof. maria', lugar: 'coordinacion de deportes', imagen: 'https://thezugzwangblog.com/wp-content/uploads/2021/05/primer-torneo-de-ajedrez.jpg'},
-      { nombre: 'volleyball', entrenador: 'david zambrano', lugar: 'Cancha de uso multiple', imagen: 'https://images.unsplash.com/photo-1592656670411-b91993efb20c?q=80&w=500' },
-      { nombre: 'basket', entrenador: 'prof. jose', lugar: 'Cancha de uso multiple', imagen: 'https://images.unsplash.com/photo-1504450758481-7338eba7524a?q=80&w=500' },
-      { nombre: 'beisbol', entrenador: 'prof. pablo', lugar: 'cancha de tierra', imagen: 'https://7dias.com.do/wp-content/uploads/2025/05/Accion-del-Torneo-de-Beisbol-AA-del-Distrito.jpeg'}
-    ]);
+      { nombre: 'Futbol5', entrenador: 'prof. omar',  lugarEntrenamiento: 'Cancha de uso multiple', imagen: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=1000' },
+      { nombre: 'ajedrez', entrenador: 'prof. maria',  lugarEntrenamiento: 'coordinacion de deportes', imagen: 'https://thezugzwangblog.com/wp-content/uploads/2021/05/primer-torneo-de-ajedrez.jpg'},
+      { nombre: 'volleyball', entrenador: 'david zambrano',  lugarEntrenamiento: 'Cancha de uso multiple', imagen: 'https://images.unsplash.com/photo-1592656670411-b91993efb20c?q=80&w=500' },
+      { nombre: 'basket', entrenador: 'prof. jose',  lugarEntrenamiento: 'Cancha de uso multiple', imagen: 'https://images.unsplash.com/photo-1504450758481-7338eba7524a?q=80&w=500' },
+      { nombre: 'beisbol', entrenador: 'prof. pablo',  lugarEntrenamiento: 'cancha de tierra', imagen: 'https://7dias.com.do/wp-content/uploads/2025/05/Accion-del-Torneo-de-Beisbol-AA-del-Distrito.jpeg'}
+    ], {
+      individualHooks: true
+    });
 
     await Torneo.bulkCreate([
       { nombre: 'UNET CHAMPIONSHIP 2024', encargado:'Omar Cardenas', equipos: 8, fechaInicio: '2026-06-26', maxJugadores: 12, descripcion: 'Witness the most intense basketball matches of the season.', imagen: 'https://images.unsplash.com/photo-1546519638-68e109498ffc?q=80&w=1000&auto=format&fit=crop'}
