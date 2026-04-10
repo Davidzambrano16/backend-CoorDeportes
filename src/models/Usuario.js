@@ -31,7 +31,7 @@ const Usuario = db.define('Usuario', {
     },
     rol: {
         type: DataTypes.ENUM('estudiante', 'admin'),
-        defaultValue: 'estudiante'
+        allowNull: false
     },
     carrera: {
         type: DataTypes.STRING,
@@ -39,7 +39,8 @@ const Usuario = db.define('Usuario', {
     },
     estado: {
         type: DataTypes.ENUM('activo', 'inactivo'),
-        defaultValue: 'activo'
+        defaultValue: 'activo',
+        allowNull: false
     },
     imagen: {
         type: DataTypes.STRING

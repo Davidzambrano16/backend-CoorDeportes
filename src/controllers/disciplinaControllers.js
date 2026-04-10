@@ -9,6 +9,16 @@ export const obtenerDisciplinas = async (req, res, next) => {
     }
 }
 
+export const obtenerDisciplina = async (req, res, next) => {
+    try {
+        const { id } = req.params
+        const disciplina = await Disciplina.findByPk(id)
+        res.status(200).json(disciplina)
+    } catch (error) {
+        next(error)
+    }
+}
+
 export const crearDisciplina = async  (req, res, next) => {
     try {
         const {datos} = req.body

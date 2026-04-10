@@ -16,10 +16,6 @@ const Disciplina = db.define('Disciplina', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    lugarEntrenamiento:{
-        type: DataTypes.STRING,
-        allowNull: false
-    },
     descripcion: {
         type: DataTypes.TEXT
     },
