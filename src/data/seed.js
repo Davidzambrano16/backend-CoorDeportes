@@ -13,6 +13,7 @@ const seedDatabase = async () => {
     await Alquiler.sync({ force: true });
 
     // 2. Lugares
+    Equipos
     const lugares = await Lugar.bulkCreate([
       { nombre: 'Cancha de Usos Múltiples', tipo: 'Polivalente' },
       { nombre: 'Gimnasio Cubierto', tipo: 'Tabloncillo' },
@@ -86,8 +87,8 @@ const seedDatabase = async () => {
     const res2 = await Reserva.create({ fecha: '2026-04-20', horaInicio: '14:00:00', horaFin: '15:00:00', tipo: 'partido', lugarId: lugares[1].id });
 
     await Partido.bulkCreate([
-      { reservaId: res1.id, torneoId: torneos[0].id, localId: equipos[0].id, visitanteId: equipos[2].id, puntosLocal: 3, puntosVisitante: 1, finalizado: true },
-      { reservaId: res2.id, torneoId: torneos[0].id, localId: equipos[1].id, visitanteId: equipos[3].id, puntosLocal: 0, puntosVisitante: 0, finalizado: false }
+      { reservaId: res1.id, torneoId: torneos[0].id, localId: equipo1.id, visitanteId: equipo2.id, puntosLocal: 3, puntosVisitante: 1, finalizado: true },
+      { reservaId: res2.id, torneoId: torneos[0].id, localId: equipo3.id, visitanteId: equipo4.id, puntosLocal: 0, puntosVisitante: 0, finalizado: false }
     ]);
 
     // 8. ALQUILERES
