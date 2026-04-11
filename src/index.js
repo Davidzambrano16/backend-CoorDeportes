@@ -25,7 +25,7 @@ const testConnection = async () => {
         await db.authenticate();
         console.log('✅ Conexión a la base de datos establecida con éxito.')
 
-        await db.sync({force: true})
+        await db.sync({force: false})
         console.log('✅ Tablas sincronizadas.')
     } catch (error) {
         console.error('❌ No se pudo conectar a la base de datos:', error);

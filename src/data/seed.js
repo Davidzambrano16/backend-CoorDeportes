@@ -1,4 +1,5 @@
 import { Usuario, Disciplina, Torneo, Lugar, Equipo, Reserva, Partido, Alquiler } from '../models/index.js';
+import bcrypt from 'bcrypt';
 
 const seedDatabase = async () => {
   try {
@@ -12,8 +13,9 @@ const seedDatabase = async () => {
     await Partido.sync({ force: true });
     await Alquiler.sync({ force: true });
 
+    const hashedPassword = await bcrypt.hash('123', 10);
+
     // 2. Lugares
-    Equipos
     const lugares = await Lugar.bulkCreate([
       { nombre: 'Cancha de Usos Múltiples', tipo: 'Polivalente' },
       { nombre: 'Gimnasio Cubierto', tipo: 'Tabloncillo' },
@@ -22,15 +24,15 @@ const seedDatabase = async () => {
     ]);
 
     // 3. Usuarios (Cédulas reales para capitanes)
-    await Usuario.bulkCreate([
-      { cedula: 'V-29734989', nombres: 'David', apellidos: 'Zambrano', correo: 'david.zambrano@unet.edu.ve', password: '123', rol: 'admin', carrera: 'Ing. Informatica' },
-      { cedula: 'V-10', nombres: 'Anhela', apellidos: 'Vivas', correo: 'anhela.vivas@unet.edu.ve', password: '123', rol: 'admin', carrera: 'Arquitectura' },
-      { cedula: 'V-11', nombres: 'Andres', apellidos: 'Pérez', correo: 'andres@unet.edu.ve', password: '123', rol: 'estudiante', carrera: 'Ing. Mecanica' },
-      { cedula: 'V-12', nombres: 'María', apellidos: 'García', correo: 'maria@unet.edu.ve', password: '123', rol: 'estudiante', carrera: 'Ing. Industrial' },
-      { cedula: 'V-13', nombres: 'Jose', apellidos: 'Zambrano', correo: 'jose.zambrano@unet.edu.ve', password: '123', rol: 'estudiante', carrera: 'Ing. Informatica' },
-      { cedula: 'V-14', nombres: 'Oscar', apellidos: 'Vivas', correo: 'oscar.vivas@unet.edu.ve', password: '123', rol: 'estudiante', carrera: 'Arquitectura' },
-      { cedula: 'V-15', nombres: 'valentina', apellidos: 'Pérez', correo: 'valentina@unet.edu.ve', password: '123', rol: 'estudiante', carrera: 'Ing. Mecanica' },
-      { cedula: 'V-16', nombres: 'felix', apellidos: 'García', correo: 'felix@unet.edu.ve', password: '123', rol: 'estudiante', carrera: 'Ing. Industrial' }
+      await Usuario.bulkCreate([
+      { cedula: 'V-29734989', nombres: 'David', apellidos: 'Zambrano', correo: 'david.zambrano@unet.edu.ve', password: hashedPassword, rol: 'admin', carrera: 'Ing. Informatica' },
+      { cedula: 'V-10', nombres: 'Anhela', apellidos: 'Vivas', correo: 'anhela.vivas@unet.edu.ve', password: hashedPassword, rol: 'admin', carrera: 'Arquitectura' },
+      { cedula: 'V-11', nombres: 'Andres', apellidos: 'Pérez', correo: 'andres@unet.edu.ve', password: hashedPassword, rol: 'estudiante', carrera: 'Ing. Mecanica' },
+      { cedula: 'V-12', nombres: 'María', apellidos: 'García', correo: 'maria@unet.edu.ve', password: hashedPassword, rol: 'estudiante', carrera: 'Ing. Industrial' },
+      { cedula: 'V-13', nombres: 'Jose', apellidos: 'Zambrano', correo: 'jose.zambrano@unet.edu.ve', password: hashedPassword, rol: 'estudiante', carrera: 'Ing. Informatica' },
+      { cedula: 'V-14', nombres: 'Oscar', apellidos: 'Vivas', correo: 'oscar.vivas@unet.edu.ve', password: hashedPassword, rol: 'estudiante', carrera: 'Arquitectura' },
+      { cedula: 'V-15', nombres: 'valentina', apellidos: 'Pérez', correo: 'valentina@unet.edu.ve', password: hashedPassword, rol: 'estudiante', carrera: 'Ing. Mecanica' },
+      { cedula: 'V-16', nombres: 'felix', apellidos: 'García', correo: 'felix@unet.edu.ve', password: hashedPassword, rol: 'estudiante', carrera: 'Ing. Industrial' }
 
     ]);
 

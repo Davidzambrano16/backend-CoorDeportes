@@ -26,6 +26,8 @@ export const loginUsuario = async (req, res, next) => {
         if (!password) {
             return res.status(400).json({ message: 'la contraseña es requerido' });
         }
+        
+        console.log(correo, password)
 
         const usuario = await Usuario.findOne({ where: { correo } });
         if (!usuario) {
