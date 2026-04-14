@@ -21,11 +21,13 @@ const Disciplina = db.define('Disciplina', {
     },
     horarios: {
         type: DataTypes.JSONB,
-        allowNull: false
+        allowNull: false,
+        defaultValue: []
     },
     lugarId:{
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        defaultValue: 0
     },
     descripcion: {
         type: DataTypes.TEXT
