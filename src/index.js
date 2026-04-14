@@ -42,7 +42,7 @@ const startServer = async () => {
 
         // 2. Sincronizar tablas
         // 'alter: true' ajusta las columnas sin borrar los datos existentes
-        await db.sync({ alter: true });
+        await db.sync({force: true});
         console.log('✅ Tablas sincronizadas correctamente.');
 
         // 3. Seeder Inteligente

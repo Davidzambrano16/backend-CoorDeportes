@@ -16,7 +16,7 @@ const Disciplina = db.define('Disciplina', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    telefono:{
+    telefono: {
         type: DataTypes.STRING,
     },
     horarios: {
@@ -24,10 +24,13 @@ const Disciplina = db.define('Disciplina', {
         allowNull: false,
         defaultValue: []
     },
-    lugarId:{
+    lugarId: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        defaultValue: 0
+        references: {
+            model: 'Lugares', // Asegúrate que coincida con el nombre de la tabla
+            key: 'id'
+        }
     },
     descripcion: {
         type: DataTypes.TEXT
