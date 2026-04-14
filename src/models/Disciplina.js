@@ -16,6 +16,18 @@ const Disciplina = db.define('Disciplina', {
         type: DataTypes.STRING,
         allowNull: false,
     },
+    telefono:{
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    horarios: {
+        type: DataTypes.JSONB,
+        allowNull: false
+    },
+    lugarId:{
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
     descripcion: {
         type: DataTypes.TEXT
     },

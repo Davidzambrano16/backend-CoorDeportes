@@ -25,6 +25,10 @@ const Alquiler = db.define('Alquiler', {
     pagado: { 
         type: DataTypes.BOOLEAN, 
         defaultValue: false 
+    },
+    dias: {
+        type: DataTypes.INTEGER,
+        defaultValue: 1
     }
 }, {
     tableName: 'Alquileres',

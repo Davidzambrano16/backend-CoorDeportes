@@ -8,6 +8,8 @@ import Partido from './Partido.js';
 import Lugar from './Lugar.js';
 import Reserva from './Reserva.js';
 import Alquiler from './Alquiler.js';
+import CitaFisioterapia from './CitaFisioterapia.js';
+import Fisioterapeuta from './Fisioterapia.js';
 
 // 1. Inscripciones
 Usuario.belongsToMany(Disciplina, { through: 'InscripcionDisciplina' });
@@ -45,6 +47,13 @@ Alquiler.belongsTo(Reserva, { foreignKey: 'reservaId' });
 Disciplina.belongsTo(Lugar, { foreignKey: 'lugarId' });
 Lugar.hasMany(Disciplina, { foreignKey: 'lugarId' });
 
+Usuario.hasMany(CitaFisioterapia, { foreignKey: 'pacienteCedula', as: 'citasFisio' });
+CitaFisioterapia.belongsTo(Usuario, { foreignKey: 'pacienteCedula', as: 'paciente' });
+
+// Un Fisioterapeuta atiende muchas citas
+Fisioterapeuta.hasMany(CitaFisioterapia, { foreignKey: 'fisioterapeutaId' });
+CitaFisioterapia.belongsTo(Fisioterapeuta, { foreignKey: 'fisioterapeutaId' });
+
 export {
     Usuario,
     Equipo,
@@ -55,5 +64,7 @@ export {
     Partido,
     Lugar,
     Reserva,
-    Alquiler
+    Alquiler,
+    CitaFisioterapia,
+    Fisioterapeuta
 };

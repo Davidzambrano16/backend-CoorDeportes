@@ -6,3 +6,4 @@ export * from './partidoControllers.js';
 export * from './alquilerControllers.js';
 export * from './reservaControllers.js';
 export * from './lugarControllers.js';
+export * from './fisioterapiaController.js'

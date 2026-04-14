@@ -1,4 +1,4 @@
-import { Usuario, Disciplina, Torneo, Lugar, Equipo, Reserva, Partido, Alquiler } from '../models/index.js';
+import { Usuario, Disciplina, Torneo, Lugar, Equipo, Reserva, Partido, Alquiler, Fisioterapeuta, CitaFisioterapia } from '../models/index.js';
 import bcrypt from 'bcrypt';
 
 const seedDatabase = async () => {
@@ -17,14 +17,20 @@ const seedDatabase = async () => {
 
     // 2. Lugares
     const lugares = await Lugar.bulkCreate([
-      { nombre: 'Cancha de Usos Múltiples', tipo: 'Polivalente' },
-      { nombre: 'Gimnasio Cubierto', tipo: 'Tabloncillo' },
-      { nombre: 'Campo de Béisbol', tipo: 'Tierra' },
-      { nombre: 'Cancha de Tenis', tipo: 'Cemento' }
+      { nombre: 'Cancha de Usos Múltiples - Futbol sala', tipo: 'Cemento' },
+      { nombre: 'Cancha de Usos Múltiples - Voleiball ', tipo: 'Cemento' },
+      { nombre: 'Cancha de Usos Múltiples - Baloncesto', tipo: 'Cemento' },
+      { nombre: 'Cancha de Usos Múltiples - Tenis de Campos', tipo: 'Cemento' },
+      { nombre: 'Cancha de Futbol Cesped', tipo: 'Cesped' },
+      { nombre: 'Cancha de Futbol arena', tipo: 'Arena' },
+      { nombre: 'Cancha de Softball', tipo: 'Cesped' },
+      { nombre: 'Laboratorio de rendimiento Fisico', tipo: 'Gimnasio' },
+      { nombre: 'Edificio vertical Unet', tipo: 'Salon' },
+      { nombre: 'Centro de fisioterapia', tipo: 'Sala' }
     ]);
 
     // 3. Usuarios (Cédulas reales para capitanes)
-      await Usuario.bulkCreate([
+    await Usuario.bulkCreate([
       { cedula: 'V-29734989', nombres: 'David', apellidos: 'Zambrano', correo: 'david.zambrano@unet.edu.ve', password: hashedPassword, rol: 'admin', carrera: 'Ing. Informatica' },
       { cedula: 'V-10', nombres: 'Anhela', apellidos: 'Vivas', correo: 'anhela.vivas@unet.edu.ve', password: hashedPassword, rol: 'admin', carrera: 'Arquitectura' },
       { cedula: 'V-11', nombres: 'Andres', apellidos: 'Pérez', correo: 'andres@unet.edu.ve', password: hashedPassword, rol: 'estudiante', carrera: 'Ing. Mecanica' },
@@ -38,10 +44,126 @@ const seedDatabase = async () => {
 
     // 4. MÁS DISCIPLINAS
     const disciplinas = await Disciplina.bulkCreate([
-      { nombre: 'Fútbol 5', entrenador: 'Prof. Omar', lugarId: lugares[0].id, imagen: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018' },
-      { nombre: 'Baloncesto', entrenador: 'Prof. Pedro', lugarId: lugares[1].id, imagen: 'https://images.unsplash.com/photo-1546519638-68e109498ffc' },
-      { nombre: 'Voleibol', entrenador: 'Prof. Maria', lugarId: lugares[1].id, imagen: 'https://images.unsplash.com/photo-1592656670408-3c1f44c526c8' },
-      { nombre: 'Béisbol', entrenador: 'Prof. Pablo', lugarId: lugares[2].id, imagen: 'https://images.unsplash.com/photo-1508344953851-48c1774bd00c' }
+      {
+        nombre: 'SOFTBOL Y BÉISBOL',
+        entrenador: ['Prof. Tulio Pineda', 'Prof. Pedro Chavez'],
+        telefono: ['0414-706.08.95', '0414-713.57.04'],
+        horarios: [{ dias: ['Martes', 'Miércoles'], horaInicio: '11:00 a.m.', horaFin: '1:00 p.m.' }],
+        imagen: 'https://pxhere.com/es/photo/675351',
+        lugarId: 7,
+        descripcion: 'Práctica conjunta de softbol y béisbol, enfocada en los fundamentos de bateo, fildeo y lanzamiento.'
+      },
+      {
+        nombre: 'FÚTBOL CAMPO',
+        entrenador: ['Prof. Argenis Méndez'],
+        telefono: ['0424-778.56.33'],
+        horarios: [{ dias: ['Martes', 'Viernes'], horaInicio: '11:00 a.m.', horaFin: '1:00 p.m.' }],
+        imagen: 'https://www.freepik.es/fotos-vectores-gratis/futbol-accion',
+        lugarId: 5, // Cancha de Futbol Cesped
+        descripcion: 'Entrenamiento intensivo de fútbol en campo grande. Las sesiones cubren táctica y resistencia física.'
+      },
+      {
+        nombre: 'HALTEROFILIA (Levantamiento de Pesas)',
+        entrenador: ['Prof. José Caballero'],
+        telefono: ['0414-796.78.39'],
+        horarios: [
+          { dias: ['Lunes a Viernes'], horaInicio: '10:00 a.m.', horaFin: '12:00 m.' },
+          { dias: ['Lunes a Viernes'], horaInicio: '2:30 p.m.', horaFin: '5:30 p.m.' }
+        ],
+        imagen: 'https://www.youtube.com/watch?v=EZYd4MMfHjE',
+        lugarId: 8, // Laboratorio de rendimiento Fisico
+        descripcion: 'Disciplina olímpica centrada en el levantamiento de cargas máximas.'
+      },
+      {
+        nombre: 'ATLETISMO',
+        entrenador: ['Prof. Douglas Urrego'],
+        telefono: ['0424-726.61.30', '+57 313.502.11.00'],
+        horarios: [{ dias: ['Martes y Viernes'], horaInicio: '8:00 a.m.', horaFin: '9:30 a.m.' }],
+        imagen: 'https://www.shutterstock.com/es/search/running-competition',
+        lugarId: 5, // Se entrena usualmente cerca de las canchas de césped/arena
+        descripcion: 'Entrenamiento variado que abarca carreras de velocidad y fondo, saltos y lanzamientos.'
+      },
+      {
+        nombre: 'LABORATORIO DE RENDIMIENTO FÍSICO',
+        entrenador: ['Prof. Pablo Velásquez', 'Omar Cárdenas'],
+        telefono: ['0424-709.82.28', '0414-075.88.40'],
+        horarios: [{ dias: ['Lunes a Viernes'], horaInicio: '8:00 a.m.', horaFin: '1:00 p.m.' }],
+        imagen: 'https://es.dreamstime.com/corredor-en-la-rueda-de-ardilla-el-laboratorio-biomec%C3%A1nica-image105805771',
+        lugarId: 8, // Laboratorio de rendimiento Fisico
+        descripcion: 'Un espacio dedicado a la evaluación científica de la condición física de los atletas.'
+      },
+      {
+        nombre: 'LABORATORIO DE FISIOTERAPIA',
+        entrenador: ['Ft. Sor Rangel', 'Ft. Monsalvi Azorea'],
+        telefono: ['0414-177.31.29', '0414-726.50.19'],
+        horarios: [{ dias: ['Lunes a Viernes'], horaInicio: '8:30 a.m.', horaFin: '12:00 m.' }],
+        imagen: 'https://clinicaaguirre.com/masaje-deportivo-madrid/',
+        lugarId: 10, // Centro de fisioterapia
+        descripcion: 'Servicio de prevención, tratamiento y rehabilitación de lesiones deportivas.'
+      },
+      {
+        nombre: 'KARATE DO',
+        entrenador: ['Prof. Ramón Mantilla'],
+        telefono: ['0424-750.72.39'],
+        horarios: [{ dias: ['Martes y Jueves'], horaInicio: '11:00 a.m.', horaFin: '1:00 p.m.' }],
+        imagen: 'https://ippongear.es/producto/judogi-blanco',
+        lugarId: 9, // Edificio Vertical UNET
+        descripcion: 'Arte marcial tradicional japonés que se enfoca en la autodefensa.'
+      },
+      {
+        nombre: 'FÚTBOL SALA (Masculino/Femenino)',
+        entrenador: ['Prof. Ezequiel Osorio'],
+        telefono: ['0414-711.95.66'],
+        horarios: [{ dias: ['Martes y Jueves'], horaInicio: '11:00 a.m.', horaFin: '1:00 p.m.' }],
+        imagen: 'https://meettfit.com/es/blog-sobre-suelos-de-pvc/que-es-el-futbol-sala-y-en-que-se-diferencia-del-futbol-tradicional/',
+        lugarId: 1, // Cancha de Usos Múltiples - Futbol sala
+        descripcion: 'Variante rápida del fútbol jugada en una cancha más pequeña y dura.'
+      },
+      {
+        nombre: 'BALONCESTO (Femenino/Masculino)',
+        entrenador: ['Prof. Marianella Giordanelli', 'Prof. Leonel Lara'],
+        telefono: ['0414-747.03.60', '0414-705.26.30'],
+        horarios: [{ dias: ['Martes y Jueves'], horaInicio: '11:00 a.m.', horaFin: '1:00 p.m.' }],
+        imagen: 'https://es.dreamstime.com/two-basketball-players-action-game-ball-mid-air-image417569507',
+        lugarId: 3, // Cancha de Usos Múltiples - Baloncesto
+        descripcion: 'Deporte de equipo que se juega en una cancha rectangular.'
+      },
+      {
+        nombre: 'KICKINGBALL',
+        entrenador: ['Prof. Tulio Pineda'],
+        telefono: ['0414-713.57.04'],
+        horarios: [{ dias: ['Martes y Viernes'], horaInicio: '11:00 a.m.', horaFin: '1:00 p.m.' }],
+        imagen: 'https://es.pngtree.com/freebackground/soccer-players-kicking-ball-sunset-field_19432633.html',
+        lugarId: 7, // Cancha de Softball
+        descripcion: 'Deporte competitivo similar al béisbol, pero que se juega pateando un balón.'
+      },
+      {
+        nombre: 'AJEDREZ',
+        entrenador: ['Douglas Aliendres (PDTE. Club de Ajedrez)'],
+        telefono: ['0424-757.50.77'],
+        horarios: [{ dias: ['Martes y Jueves'], horaInicio: '11:00 a.m.', horaFin: '1:00 p.m.' }],
+        imagen: 'https://ajedrezdemadera.com/products/no6-tablero-de-ajedrez-negro-3-75-piezas-alemanas-ebonizadas',
+        lugarId: 9, // Edificio Vertical UNET
+        descripcion: 'Juego de estrategia sobre un tablero.'
+      },
+      {
+        nombre: 'TENIS DE MESA',
+        entrenador: ['Dreys Suarez (PDTE. Club de Tenis de Mesa)'],
+        telefono: ['0424-752.63.34'],
+        horarios: [{ dias: ['Lunes a Viernes'], horaInicio: '11:00 a.m.', horaFin: '1:00 p.m.' }],
+        imagen: 'https://es.pngtree.com/freebackground/a-male-table-tennis-player-in-action-hitting-ball-with-paddle_19301923.html',
+        lugarId: 9, // Edificio Vertical UNET
+        descripcion: 'Deporte de raqueta rápido que se juega sobre una mesa dividida por una red.'
+      },
+      {
+        nombre: 'PORRISMO Y FRONTINOSCHEER',
+        entrenador: ['Prof. Yulieth Uzcátegui'],
+        telefono: ['0424-445.66.96'],
+        horarios: [{ dias: ['Miércoles'], horaInicio: '11:00 a.m.', horaFin: '1:00 p.m.' }],
+        imagen: 'https://www.shutterstock.com/es/search/cheerleading-pyramid?image_type=vector',
+        lugarId: 9, // Edificio Vertical UNET
+        descripcion: 'Disciplina que combina gimnasia, acrobacia, danza y animación.'
+      }
     ]);
 
     // 5. MÁS TORNEOS (Con estados variados)
@@ -76,7 +198,7 @@ const seedDatabase = async () => {
     });
     await equipo3.addUsuarios(['V-13', 'V-14']);
 
-  const equipo4 = await Equipo.create({
+    const equipo4 = await Equipo.create({
       nombre: 'Unetmes',
       cantJugadores: 2,
       capitanCedula: 'V-11',
@@ -103,6 +225,47 @@ const seedDatabase = async () => {
       monto: 45.00,
       pagado: true
     });
+
+    // 9. FISIOTERAPEUTAS (Datos suministrados por la coordinación)
+    const fisioterapeutas = await Fisioterapeuta.bulkCreate([
+      {
+        nombre: 'Sor',
+        apellido: 'Rangel',
+        especialidad: 'Fisiatría Deportiva',
+        disponibilidad: 'Lunes a Viernes (8:30 a.m. - 12:00 m.)',
+        contacto: '0414-177.31.29'
+      },
+      {
+        nombre: 'Monsalvi',
+        apellido: 'Azorea',
+        especialidad: 'Rehabilitación Física',
+        disponibilidad: 'Lunes a Viernes (8:30 a.m. - 12:00 m.)',
+        contacto: '0414-726.50.19'
+      }
+    ]);
+
+
+    await CitaFisioterapia.create({
+      fecha: '2026-04-20',
+      hora: '09:00:00',
+      motivo: 'Evaluación de esguince de tobillo derecho',
+      estado: 'pendiente',
+      pacienteCedula: 'V-29734989',
+      fisioterapeutaId: fisioterapeutas[0].id
+    });
+
+    // Cita para Anhela (V-10) con la Ft. Monsalvi
+    await CitaFisioterapia.create({
+      fecha: '2026-04-21',
+      hora: '10:30:00',
+      motivo: 'Terapia de recuperación post-entrenamiento',
+      estado: 'asistida',
+      diagnostico: 'Contractura muscular leve en zona lumbar. Se recomienda reposo de 48h.',
+      pacienteCedula: 'V-10',
+      fisioterapeutaId: fisioterapeutas[1].id
+    });
+
+    console.log('✅ Módulo de Fisioterapia poblado correctamente.');
 
     console.log('🚀 Base de Datos poblada con éxito. ¡Todo listo para el Front!');
   } catch (error) {
