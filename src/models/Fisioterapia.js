@@ -21,8 +21,6 @@ const Fisioterapeuta = db.define('Fisioterapeutas', {
     },
     contacto: {
         type: DataTypes.STRING,
-        unique: true,
-        validate: { isEmail: true }
     },
     disponibilidad: {
         type: DataTypes.STRING, // Ejemplo: "Lunes a Viernes, 8am - 12pm"

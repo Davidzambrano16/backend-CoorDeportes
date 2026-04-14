@@ -18,7 +18,6 @@ const Disciplina = db.define('Disciplina', {
     },
     telefono:{
         type: DataTypes.STRING,
-        allowNull: false
     },
     horarios: {
         type: DataTypes.JSONB,
