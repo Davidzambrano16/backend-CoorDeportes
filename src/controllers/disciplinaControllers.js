@@ -30,7 +30,7 @@ export const crearDisciplina = async  (req, res, next) => {
 
 export const eliminarDisciplina = async (req, res, next) => {
     try {
-        const {id} = req.body
+        const { id } = req.params
         const disciplinaEliminada = await Disciplina.findByPk(id)
         disciplinaEliminada.destroy()
         res.status(200).json({
@@ -40,3 +40,23 @@ export const eliminarDisciplina = async (req, res, next) => {
         next(error)
     }
 }
+
+export const actualizarDisciplina = async (req, res, next) => {
+    try {
+        const { id } = req.params;
+        const disciplina = await Disciplina.findByPk(id);
+
+        if (!disciplina) {
+            return res.status(404).json({
+                message: "Disciplina no encontrada"
+            });
+        }
+        await disciplina.update(req.body);
+
+        // 3. Respondemos con el objeto actualizado
+        res.status(200).json(disciplina);
+    } catch (error) {
+        console.error("Error al actualizar:", error);
+        next(error);
+    }
+};
