@@ -49,7 +49,7 @@ const seedDatabase = async () => {
         entrenador: ['Prof. Tulio Pineda', 'Prof. Pedro Chavez'],
         telefono: ['0414-706.08.95', '0414-713.57.04'],
         horarios: [{ dias: ['Martes', 'Miércoles'], horaInicio: '11:00 a.m.', horaFin: '1:00 p.m.' }],
-        imagen: 'https://backend-coordeportes-4.onrender.com/uploads/beisbol.jpeg',
+        imagen: 'beisbol',
         lugarId: 7,
         descripcion: 'Práctica conjunta de softbol y béisbol, enfocada en los fundamentos de bateo, fildeo y lanzamiento.'
       },
@@ -58,7 +58,7 @@ const seedDatabase = async () => {
         entrenador: ['Prof. Argenis Méndez'],
         telefono: ['0424-778.56.33'],
         horarios: [{ dias: ['Martes', 'Viernes'], horaInicio: '11:00 a.m.', horaFin: '1:00 p.m.' }],
-        imagen: 'https://backend-coordeportes-4.onrender.com/uploads/futsal.jpeg',
+        imagen: 'futsal',
         lugarId: 5, // Cancha de Futbol Cesped
         descripcion: 'Entrenamiento intensivo de fútbol en campo grande. Las sesiones cubren táctica y resistencia física.'
       },
@@ -70,7 +70,7 @@ const seedDatabase = async () => {
           { dias: ['Lunes a Viernes'], horaInicio: '10:00 a.m.', horaFin: '12:00 m.' },
           { dias: ['Lunes a Viernes'], horaInicio: '2:30 p.m.', horaFin: '5:30 p.m.' }
         ],
-        imagen: 'https://backend-coordeportes-4.onrender.com/uploads/levantamiento.jpeg',
+        imagen: 'levantamiento',
         lugarId: 8, // Laboratorio de rendimiento Fisico
         descripcion: 'Disciplina olímpica centrada en el levantamiento de cargas máximas.'
       },
@@ -79,7 +79,7 @@ const seedDatabase = async () => {
         entrenador: ['Prof. Douglas Urrego'],
         telefono: ['0424-726.61.30', '+57 313.502.11.00'],
         horarios: [{ dias: ['Martes y Viernes'], horaInicio: '8:00 a.m.', horaFin: '9:30 a.m.' }],
-        imagen: 'https://backend-coordeportes-4.onrender.com/uploads/atletismo.jpeg',
+        imagen: 'atletismo',
         lugarId: 5, // Se entrena usualmente cerca de las canchas de césped/arena
         descripcion: 'Entrenamiento variado que abarca carreras de velocidad y fondo, saltos y lanzamientos.'
       },
@@ -88,7 +88,7 @@ const seedDatabase = async () => {
         entrenador: ['Prof. Pablo Velásquez', 'Omar Cárdenas'],
         telefono: ['0424-709.82.28', '0414-075.88.40'],
         horarios: [{ dias: ['Lunes a Viernes'], horaInicio: '8:00 a.m.', horaFin: '1:00 p.m.' }],
-        imagen: 'https://backend-coordeportes-4.onrender.com/uploads/gym.jpeg',
+        imagen: 'gym',
         lugarId: 8, // Laboratorio de rendimiento Fisico
         descripcion: 'Un espacio dedicado a la evaluación científica de la condición física de los atletas.'
       },
@@ -97,7 +97,7 @@ const seedDatabase = async () => {
         entrenador: ['Prof. Ramón Mantilla'],
         telefono: ['0424-750.72.39'],
         horarios: [{ dias: ['Martes y Jueves'], horaInicio: '11:00 a.m.', horaFin: '1:00 p.m.' }],
-        imagen: 'https://backend-coordeportes-4.onrender.com/uploads/karate.jpeg',
+        imagen: 'karate',
         lugarId: 9, // Edificio Vertical UNET
         descripcion: 'Arte marcial tradicional japonés que se enfoca en la autodefensa.'
       },
@@ -106,7 +106,7 @@ const seedDatabase = async () => {
         entrenador: ['Prof. Ezequiel Osorio'],
         telefono: ['0414-711.95.66'],
         horarios: [{ dias: ['Martes y Jueves'], horaInicio: '11:00 a.m.', horaFin: '1:00 p.m.' }],
-        imagen: 'https://backend-coordeportes-4.onrender.com/uploads/futsal.jpeg',
+        imagen: 'futsal',
         lugarId: 1, // Cancha de Usos Múltiples - Futbol sala
         descripcion: 'Variante rápida del fútbol jugada en una cancha más pequeña y dura.'
       },
@@ -115,7 +115,7 @@ const seedDatabase = async () => {
         entrenador: ['Prof. Marianella Giordanelli', 'Prof. Leonel Lara'],
         telefono: ['0414-747.03.60', '0414-705.26.30'],
         horarios: [{ dias: ['Martes y Jueves'], horaInicio: '11:00 a.m.', horaFin: '1:00 p.m.' }],
-        imagen: 'https://backend-coordeportes-4.onrender.com/uploads/baloncesto.jpeg',
+        imagen: 'baloncesto',
         lugarId: 3, // Cancha de Usos Múltiples - Baloncesto
         descripcion: 'Deporte de equipo que se juega en una cancha rectangular.'
       },
@@ -124,7 +124,7 @@ const seedDatabase = async () => {
         entrenador: ['Prof. Tulio Pineda'],
         telefono: ['0414-713.57.04'],
         horarios: [{ dias: ['Martes y Viernes'], horaInicio: '11:00 a.m.', horaFin: '1:00 p.m.' }],
-        imagen: 'https://backend-coordeportes-4.onrender.com/uploads/kikinball.jpeg',
+        imagen: 'kikinball',
         lugarId: 7, // Cancha de Softball
         descripcion: 'Deporte competitivo similar al béisbol, pero que se juega pateando un balón.'
       },
@@ -133,7 +133,7 @@ const seedDatabase = async () => {
         entrenador: ['Douglas Aliendres (PDTE. Club de Ajedrez)'],
         telefono: ['0424-757.50.77'],
         horarios: [{ dias: ['Martes y Jueves'], horaInicio: '11:00 a.m.', horaFin: '1:00 p.m.' }],
-        imagen: 'https://backend-coordeportes-4.onrender.com/uploads/ajedrez.jpeg',
+        imagen: 'ajedrez',
         lugarId: 9, // Edificio Vertical UNET
         descripcion: 'Juego de estrategia sobre un tablero.'
       },
@@ -142,7 +142,7 @@ const seedDatabase = async () => {
         entrenador: ['Dreys Suarez (PDTE. Club de Tenis de Mesa)'],
         telefono: ['0424-752.63.34'],
         horarios: [{ dias: ['Lunes a Viernes'], horaInicio: '11:00 a.m.', horaFin: '1:00 p.m.' }],
-        imagen: 'https://backend-coordeportes-4.onrender.com/uploads/tenismesa.jpeg',
+        imagen: 'tenismesa',
         lugarId: 9, // Edificio Vertical UNET
         descripcion: 'Deporte de raqueta rápido que se juega sobre una mesa dividida por una red.'
       },
@@ -151,7 +151,7 @@ const seedDatabase = async () => {
         entrenador: ['Prof. Yulieth Uzcátegui'],
         telefono: ['0424-445.66.96'],
         horarios: [{ dias: ['Miércoles'], horaInicio: '11:00 a.m.', horaFin: '1:00 p.m.' }],
-        imagen: 'https://backend-coordeportes-4.onrender.com/uploads/porrismo.jpeg',
+        imagen: 'porrismo',
         lugarId: 9, // Edificio Vertical UNET
         descripcion: 'Disciplina que combina gimnasia, acrobacia, danza y animación.'
       }
