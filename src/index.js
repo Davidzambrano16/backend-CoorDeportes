@@ -52,7 +52,7 @@ const startServer = async () => {
         const count = await Usuario.count();
         if (count === 0) {
             console.log('⏳ La base de datos está vacía. Iniciando Seeder...');
-            // await seedDatabase();
+            await seedDatabase();
             console.log('🚀 Base de Datos poblada con éxito.');
         } else {
             console.log('ℹ️ La base de datos ya contiene datos. Se saltó el Seeder.');
