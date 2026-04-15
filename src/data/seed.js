@@ -42,14 +42,14 @@ const seedDatabase = async () => {
 
     ]);
 
-    // 4. MÁS DISCIPLINAS
+    // 4. MÁS DISCIPLINAs
     const disciplinas = await Disciplina.bulkCreate([
       {
         nombre: 'SOFTBOL Y BÉISBOL',
         entrenador: ['Prof. Tulio Pineda', 'Prof. Pedro Chavez'],
         telefono: ['0414-706.08.95', '0414-713.57.04'],
         horarios: [{ dias: ['Martes', 'Miércoles'], horaInicio: '11:00 a.m.', horaFin: '1:00 p.m.' }],
-        imagen: '../uploads/beisbol.jpeg',
+        imagen: 'https://backend-coordeportes-4.onrender.com/uploads/beisbol.jpeg',
         lugarId: 7,
         descripcion: 'Práctica conjunta de softbol y béisbol, enfocada en los fundamentos de bateo, fildeo y lanzamiento.'
       },
@@ -58,7 +58,7 @@ const seedDatabase = async () => {
         entrenador: ['Prof. Argenis Méndez'],
         telefono: ['0424-778.56.33'],
         horarios: [{ dias: ['Martes', 'Viernes'], horaInicio: '11:00 a.m.', horaFin: '1:00 p.m.' }],
-        imagen: 'https://www.freepik.es/fotos-vectores-gratis/futbol-accion',
+        imagen: 'https://backend-coordeportes-4.onrender.com/uploads/futsal.jpeg',
         lugarId: 5, // Cancha de Futbol Cesped
         descripcion: 'Entrenamiento intensivo de fútbol en campo grande. Las sesiones cubren táctica y resistencia física.'
       },
@@ -70,7 +70,7 @@ const seedDatabase = async () => {
           { dias: ['Lunes a Viernes'], horaInicio: '10:00 a.m.', horaFin: '12:00 m.' },
           { dias: ['Lunes a Viernes'], horaInicio: '2:30 p.m.', horaFin: '5:30 p.m.' }
         ],
-        imagen: 'https://www.youtube.com/watch?v=EZYd4MMfHjE',
+        imagen: 'https://backend-coordeportes-4.onrender.com/uploads/levantamiento.jpeg',
         lugarId: 8, // Laboratorio de rendimiento Fisico
         descripcion: 'Disciplina olímpica centrada en el levantamiento de cargas máximas.'
       },
@@ -79,7 +79,7 @@ const seedDatabase = async () => {
         entrenador: ['Prof. Douglas Urrego'],
         telefono: ['0424-726.61.30', '+57 313.502.11.00'],
         horarios: [{ dias: ['Martes y Viernes'], horaInicio: '8:00 a.m.', horaFin: '9:30 a.m.' }],
-        imagen: 'https://www.shutterstock.com/es/search/running-competition',
+        imagen: 'https://backend-coordeportes-4.onrender.com/uploads/atletismo.jpeg',
         lugarId: 5, // Se entrena usualmente cerca de las canchas de césped/arena
         descripcion: 'Entrenamiento variado que abarca carreras de velocidad y fondo, saltos y lanzamientos.'
       },
@@ -88,25 +88,16 @@ const seedDatabase = async () => {
         entrenador: ['Prof. Pablo Velásquez', 'Omar Cárdenas'],
         telefono: ['0424-709.82.28', '0414-075.88.40'],
         horarios: [{ dias: ['Lunes a Viernes'], horaInicio: '8:00 a.m.', horaFin: '1:00 p.m.' }],
-        imagen: 'https://es.dreamstime.com/corredor-en-la-rueda-de-ardilla-el-laboratorio-biomec%C3%A1nica-image105805771',
+        imagen: 'https://backend-coordeportes-4.onrender.com/uploads/gym.jpeg',
         lugarId: 8, // Laboratorio de rendimiento Fisico
         descripcion: 'Un espacio dedicado a la evaluación científica de la condición física de los atletas.'
-      },
-      {
-        nombre: 'LABORATORIO DE FISIOTERAPIA',
-        entrenador: ['Ft. Sor Rangel', 'Ft. Monsalvi Azorea'],
-        telefono: ['0414-177.31.29', '0414-726.50.19'],
-        horarios: [{ dias: ['Lunes a Viernes'], horaInicio: '8:30 a.m.', horaFin: '12:00 m.' }],
-        imagen: 'https://clinicaaguirre.com/masaje-deportivo-madrid/',
-        lugarId: 10, // Centro de fisioterapia
-        descripcion: 'Servicio de prevención, tratamiento y rehabilitación de lesiones deportivas.'
       },
       {
         nombre: 'KARATE DO',
         entrenador: ['Prof. Ramón Mantilla'],
         telefono: ['0424-750.72.39'],
         horarios: [{ dias: ['Martes y Jueves'], horaInicio: '11:00 a.m.', horaFin: '1:00 p.m.' }],
-        imagen: 'https://ippongear.es/producto/judogi-blanco',
+        imagen: 'https://backend-coordeportes-4.onrender.com/uploads/karate.jpeg',
         lugarId: 9, // Edificio Vertical UNET
         descripcion: 'Arte marcial tradicional japonés que se enfoca en la autodefensa.'
       },
@@ -115,7 +106,7 @@ const seedDatabase = async () => {
         entrenador: ['Prof. Ezequiel Osorio'],
         telefono: ['0414-711.95.66'],
         horarios: [{ dias: ['Martes y Jueves'], horaInicio: '11:00 a.m.', horaFin: '1:00 p.m.' }],
-        imagen: 'https://meettfit.com/es/blog-sobre-suelos-de-pvc/que-es-el-futbol-sala-y-en-que-se-diferencia-del-futbol-tradicional/',
+        imagen: 'https://backend-coordeportes-4.onrender.com/uploads/futsal.jpeg',
         lugarId: 1, // Cancha de Usos Múltiples - Futbol sala
         descripcion: 'Variante rápida del fútbol jugada en una cancha más pequeña y dura.'
       },
@@ -124,7 +115,7 @@ const seedDatabase = async () => {
         entrenador: ['Prof. Marianella Giordanelli', 'Prof. Leonel Lara'],
         telefono: ['0414-747.03.60', '0414-705.26.30'],
         horarios: [{ dias: ['Martes y Jueves'], horaInicio: '11:00 a.m.', horaFin: '1:00 p.m.' }],
-        imagen: 'https://es.dreamstime.com/two-basketball-players-action-game-ball-mid-air-image417569507',
+        imagen: 'https://backend-coordeportes-4.onrender.com/uploads/baloncesto.jpeg',
         lugarId: 3, // Cancha de Usos Múltiples - Baloncesto
         descripcion: 'Deporte de equipo que se juega en una cancha rectangular.'
       },
@@ -133,7 +124,7 @@ const seedDatabase = async () => {
         entrenador: ['Prof. Tulio Pineda'],
         telefono: ['0414-713.57.04'],
         horarios: [{ dias: ['Martes y Viernes'], horaInicio: '11:00 a.m.', horaFin: '1:00 p.m.' }],
-        imagen: 'https://es.pngtree.com/freebackground/soccer-players-kicking-ball-sunset-field_19432633.html',
+        imagen: 'https://backend-coordeportes-4.onrender.com/uploads/kikinball.jpeg',
         lugarId: 7, // Cancha de Softball
         descripcion: 'Deporte competitivo similar al béisbol, pero que se juega pateando un balón.'
       },
@@ -142,7 +133,7 @@ const seedDatabase = async () => {
         entrenador: ['Douglas Aliendres (PDTE. Club de Ajedrez)'],
         telefono: ['0424-757.50.77'],
         horarios: [{ dias: ['Martes y Jueves'], horaInicio: '11:00 a.m.', horaFin: '1:00 p.m.' }],
-        imagen: 'https://ajedrezdemadera.com/products/no6-tablero-de-ajedrez-negro-3-75-piezas-alemanas-ebonizadas',
+        imagen: 'https://backend-coordeportes-4.onrender.com/uploads/ajedrez.jpeg',
         lugarId: 9, // Edificio Vertical UNET
         descripcion: 'Juego de estrategia sobre un tablero.'
       },
@@ -151,7 +142,7 @@ const seedDatabase = async () => {
         entrenador: ['Dreys Suarez (PDTE. Club de Tenis de Mesa)'],
         telefono: ['0424-752.63.34'],
         horarios: [{ dias: ['Lunes a Viernes'], horaInicio: '11:00 a.m.', horaFin: '1:00 p.m.' }],
-        imagen: 'https://es.pngtree.com/freebackground/a-male-table-tennis-player-in-action-hitting-ball-with-paddle_19301923.html',
+        imagen: 'https://backend-coordeportes-4.onrender.com/uploads/tenismesa.jpeg',
         lugarId: 9, // Edificio Vertical UNET
         descripcion: 'Deporte de raqueta rápido que se juega sobre una mesa dividida por una red.'
       },
@@ -160,7 +151,7 @@ const seedDatabase = async () => {
         entrenador: ['Prof. Yulieth Uzcátegui'],
         telefono: ['0424-445.66.96'],
         horarios: [{ dias: ['Miércoles'], horaInicio: '11:00 a.m.', horaFin: '1:00 p.m.' }],
-        imagen: 'https://www.shutterstock.com/es/search/cheerleading-pyramid?image_type=vector',
+        imagen: 'https://backend-coordeportes-4.onrender.com/uploads/porrismo.jpeg',
         lugarId: 9, // Edificio Vertical UNET
         descripcion: 'Disciplina que combina gimnasia, acrobacia, danza y animación.'
       }
