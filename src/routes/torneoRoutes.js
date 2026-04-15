@@ -6,9 +6,9 @@ const router = Router();
 
 router.get('/', obtenerTorneos);
 router.get('/:id', obtenerTorneo);
-router.post('/:cedula', esAdmin, crearTorneo);
-router.put('/:id', esAdmin, actualizarTorneo);
-router.delete('/:id', esAdmin, eliminarTorneo);
-router.post('/inscribir-equipo/:cedula', esAdmin, inscribirEquipoEnTorneo);
+router.post('/:cedula', crearTorneo);
+router.put('/:id', actualizarTorneo);
+router.delete('/:id', eliminarTorneo);
+router.post('/inscribir-equipo/:cedula', inscribirEquipoEnTorneo);
 
 export default router;

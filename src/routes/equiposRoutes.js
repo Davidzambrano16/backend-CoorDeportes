@@ -6,8 +6,8 @@ const router = Router();
 
 router.get('/', obtenerEquipos);
 router.get('/:id', obtenerEquipo);
-router.post('/:cedula', esAdmin, crearEquipo);
-router.put('/:id/:cedula', esAdmin, actualizarEquipo);
-router.delete('/:id/:cedula', esAdmin, eliminarEquipo);
+router.post('/:cedula', crearEquipo);
+router.put('/:id/:cedula', actualizarEquipo);
+router.delete('/:id/:cedula', eliminarEquipo);
 
 export default router;
