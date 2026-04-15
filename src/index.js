@@ -19,6 +19,7 @@ const PORT = process.env.PORT || 3000;
 app.use(cors({ origin: '*' }));
 app.use(express.json({ strict: false })); // Permite mayor flexibilidad en el JSON
 app.use(express.urlencoded({ extended: true }));
+app.use('/uploads', express.static('uploads'));
 
 // --- Rutas ---
 app.use('/usuario', usuarioRoutes);
