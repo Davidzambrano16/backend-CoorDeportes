@@ -7,6 +7,6 @@ const router = Router();
 
 router.post('/', checkDisponibilidad, registrarAlquiler);
 router.get('/', obtenerAlquileres);
-router.patch('/:id/pago', marcarComoPagado);
+router.patch('/:id', marcarComoPagado);
 
 export default router;

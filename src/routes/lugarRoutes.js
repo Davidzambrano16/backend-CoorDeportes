@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { obtenerLugares, crearLugar } from '../controllers/index.js';
+import { obtenerLugares, crearLugar, actualizarLugar } from '../controllers/index.js';
 
 const router = Router();
 
@@ -8,5 +8,7 @@ router.get('/', obtenerLugares);
 
 // Agregar una cancha nueva al sistema
 router.post('/', crearLugar);
+
+router.patch('/:id', actualizarLugar);
 
 export default router;

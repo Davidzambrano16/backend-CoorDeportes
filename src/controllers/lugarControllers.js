@@ -17,3 +17,25 @@ export const crearLugar = async (req, res) => {
         res.status(500).json({ message: "Error al crear lugar" });
     }
 };
+
+export const actualizarLugar = async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const lugar = await Lugar.findByPk(id);
+
+        if (!lugar) {
+            return res.status(404).json({ message: "Lugar no encontrado" });
+        }
+
+        await lugar.update(req.body);
+
+        res.json({
+            message: "Lugar actualizado correctamente",
+            lugar
+        });
+    } catch (error) {
+        console.error("Error al actualizar lugar:", error);
+        res.status(500).json({ message: "Error al actualizar el lugar" });
+    }
+};
