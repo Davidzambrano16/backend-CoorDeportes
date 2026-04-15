@@ -8,7 +8,7 @@ const router = Router();
 router.get('/', obtenerPartidos);
 router.get('/:id', obtenerPartido);
 router.post('/:cedula', checkDisponibilidad, crearPartido);
-router.put('/:id', checkDisponibilidad, actualizarPartido);
+router.put('/:id', actualizarPartido);
 router.delete('/:id', eliminarPartido);
 
 export default router;
