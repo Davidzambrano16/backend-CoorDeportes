@@ -9,7 +9,7 @@ router.get('/', obtenerLugares);
 // Agregar una cancha nueva al sistema
 router.post('/', crearLugar);
 
-router.delete('/:id,', eliminarLugar)
+router.delete('/:id', eliminarLugar)
 
 router.patch('/:id', actualizarLugar);
 
