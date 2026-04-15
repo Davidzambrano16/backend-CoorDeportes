@@ -58,7 +58,7 @@ const seedDatabase = async () => {
         entrenador: ['Prof. Argenis Méndez'],
         telefono: ['0424-778.56.33'],
         horarios: [{ dias: ['Martes', 'Viernes'], horaInicio: '11:00 a.m.', horaFin: '1:00 p.m.' }],
-        imagen: 'futsal',
+        imagen: 'campo',
         lugarId: 5, // Cancha de Futbol Cesped
         descripcion: 'Entrenamiento intensivo de fútbol en campo grande. Las sesiones cubren táctica y resistencia física.'
       },
@@ -102,7 +102,7 @@ const seedDatabase = async () => {
         descripcion: 'Arte marcial tradicional japonés que se enfoca en la autodefensa.'
       },
       {
-        nombre: 'FÚTBOL SALA (Masculino/Femenino)',
+        nombre: 'FÚTBOL SALA',
         entrenador: ['Prof. Ezequiel Osorio'],
         telefono: ['0414-711.95.66'],
         horarios: [{ dias: ['Martes y Jueves'], horaInicio: '11:00 a.m.', horaFin: '1:00 p.m.' }],
@@ -111,7 +111,7 @@ const seedDatabase = async () => {
         descripcion: 'Variante rápida del fútbol jugada en una cancha más pequeña y dura.'
       },
       {
-        nombre: 'BALONCESTO (Femenino/Masculino)',
+        nombre: 'BALONCESTO',
         entrenador: ['Prof. Marianella Giordanelli', 'Prof. Leonel Lara'],
         telefono: ['0414-747.03.60', '0414-705.26.30'],
         horarios: [{ dias: ['Martes y Jueves'], horaInicio: '11:00 a.m.', horaFin: '1:00 p.m.' }],
