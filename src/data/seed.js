@@ -49,7 +49,7 @@ const seedDatabase = async () => {
         entrenador: ['Prof. Tulio Pineda', 'Prof. Pedro Chavez'],
         telefono: ['0414-706.08.95', '0414-713.57.04'],
         horarios: [{ dias: ['Martes', 'Miércoles'], horaInicio: '11:00 a.m.', horaFin: '1:00 p.m.' }],
-        imagen: 'https://pxhere.com/es/photo/675351',
+        imagen: '../assets/images/beisbol.jpeg',
         lugarId: 7,
         descripcion: 'Práctica conjunta de softbol y béisbol, enfocada en los fundamentos de bateo, fildeo y lanzamiento.'
       },

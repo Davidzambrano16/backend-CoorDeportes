@@ -16,7 +16,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // --- Middlewares ---
-app.use(cors());
+app.use(cors({ origin: '*' }));
 app.use(express.json({ strict: false })); // Permite mayor flexibilidad en el JSON
 app.use(express.urlencoded({ extended: true }));
 
