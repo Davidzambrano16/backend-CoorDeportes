@@ -9,10 +9,12 @@ const Disciplina = db.define('Disciplina', {
     },
     nombre: {
         type: DataTypes.STRING,
+        allowNull: false,
         unique: true
     },
     entrenador: {
         type: DataTypes.STRING,
+        allowNull: false,
     },
     telefono: {
         type: DataTypes.STRING,
@@ -24,6 +26,7 @@ const Disciplina = db.define('Disciplina', {
     },
     lugarId: {
         type: DataTypes.INTEGER,
+        allowNull: false,
         references: {
             model: 'Lugares', // Asegúrate que coincida con el nombre de la tabla
             key: 'id'
