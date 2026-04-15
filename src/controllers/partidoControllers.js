@@ -78,11 +78,23 @@ export const crearPartido = async (req, res) => {
 export const actualizarPartido = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const partido = await Partido.findByPk(id);
-    if (!partido) return res.status(404).json({ message: 'Partido no encontrado' });
+    const { puntosLocal, puntosVisitante, finalizado} = req.body; // Desestructuramos para filtrar
 
-    await partido.update(req.body);
-    res.status(200).json(partido);
+    const partido = await Partido.findByPk(id);
+
+    if (!partido) {
+      return res.status(404).json({ message: 'Partido no encontrado' });
+    }
+
+    await partido.update({
+      puntosLocal,
+      puntosVisitante,
+      finalizado
+    });
+    res.status(200).json({
+      message: "Resultado actualizado con éxito",
+      partido
+    });
   } catch (error) {
     next(error);
   }
